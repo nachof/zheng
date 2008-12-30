@@ -24,5 +24,13 @@ module Ratings
     def + other
       self.class.new(@rating + other.to_i)
     end
+
+    def == other
+      @rating == other.to_i
+    end
+
+    def eql? other
+      @rating == other.to_i
+    end
   end
 end
