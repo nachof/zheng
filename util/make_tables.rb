@@ -1,0 +1,16 @@
+#! /usr/bin/ruby
+
+require File.dirname(__FILE__) + '/../config/init'
+
+DB.create_table :players do
+  primary_key :id
+  text :name, :null => false
+  integer :rating, :null => false
+end
+
+DB.create_table :games do
+  primary_key :id
+  foreign_key :left_player_id, :players
+  foreign_key :right_player_id, :players
+  text :winner, :null => false
+end
