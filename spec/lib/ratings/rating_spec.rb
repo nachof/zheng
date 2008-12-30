@@ -34,5 +34,10 @@ describe Ratings::Rating do
     Ratings::Rating.new('1k').should eql(2000)
   end
 
-  it "should give the correct rating for values between steps"
+  it "should give the correct rating for values between steps" do
+    equivalences = { 2000 => '1k', 2100 => '1d', 2110 => '1d', 2190 => '2d' }
+    equivalences.each do |rating,rank|
+      Ratings::Rating.new(rating).rank.should == rank
+    end
+  end
 end
