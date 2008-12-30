@@ -9,8 +9,6 @@ end
 
 if ENV['ENVIRONMENT'] == 'test'
   DB = Sequel.sqlite
-  puts "Testing"
 else
-  puts "Not testing"
   DB = db_connection
 end
