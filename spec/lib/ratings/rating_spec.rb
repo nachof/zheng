@@ -11,6 +11,20 @@ describe Ratings::Rating do
     r.rank.should == '1k'
   end
 
-  it "should be initialized from a rank"
-  it "should allow to add an integer to it"
+  it "should be initialized from a rank" do
+    r = Ratings::Rating.new('2k')
+    r.to_i.should == 1900
+    r.rank.should == '2k'
+
+    r = Ratings::Rating.new('2d')
+    r.to_i.should == 2200
+    r.rank.should == '2d'
+  end
+
+  it "should allow to add an integer to it" do
+    r = Ratings::Rating.new(2000)
+    r = r + 200
+    r.to_i.should == 2200
+    r.rank.should == '2d'
+  end
 end
