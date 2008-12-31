@@ -4,7 +4,7 @@ module Ratings
     def call(mod, action, *params)
       "Actions::#{mod.camelize}".constantize.send(action.to_sym, *params)
     rescue NameError
-      raise NoActionFound.new("#{mod} #{action}")
+      raise NoActionFound.new("#{mod} #{action} (#{$!})")
     end
 
     class NoActionFound < Exception; end

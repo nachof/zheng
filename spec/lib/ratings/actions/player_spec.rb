@@ -12,6 +12,9 @@ describe Ratings::Actions::Player do
       Player.should_receive(:create).with(:name => "Peter", :rating => 2100)
       Actions::call "player", "add", "Peter", 2100
     end
-    it "should add a new player with rating as string"
+    it "should add a new player with rating as string" do
+      Player.should_receive(:create).with(:name => "Peter", :rating => 2100)
+      Actions::call "player", "add", "Peter", "2100"
+    end
   end
 end
