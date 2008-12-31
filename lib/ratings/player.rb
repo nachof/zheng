@@ -1,17 +1,12 @@
 module Ratings
   class Player < Sequel::Model
+    include Util
+
     set_dataset :players
     set_primary_key :id
 
-    def name
-      @values[:name]
-    end
-    def rating
-      @values[:rating]
-    end
-    def rating= v
-      @values[:rating] = v
-    end
+    sequel_accessor :name, :rating
+
     def rank
       Rating.new(rating).rank
     end
