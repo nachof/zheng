@@ -7,8 +7,11 @@ describe Ratings::Actions::Player do
     before do
       @p1 = mock("player1", :name => "Peter", :rating => 2400)
       @p2 = mock("player2", :name => "John", :rating => 2400)
+      [ @p1, @p2 ].each { |p| p.stub! :rating=; p.stub! :save}
+      @g = mock("game")
       Player.stub!(:named).and_return @p1, @p2
-      Game.stub!(:create)
+      Game.stub!(:create).and_return @g
+      @g.stub!(:rating_change_for).and_return 0
     end
 
     it "should add a new game, winner left" do
@@ -28,6 +31,12 @@ describe Ratings::Actions::Player do
       Actions::call "game", "add", "Peter", "John", "second"
     end
 
-    it "should change the ratings of the players according to the game"
+    it "should change the ratings of the players according to the game" do
+      @g.should_receive(:rating_change_for).with(:left).and_return -50
+      @g.should_receive(:rating_change_for).with(:right).and_return 50
+      @p1.should_receive(:rating=).with(2350)
+      @p2.should_receive(:rating=).with(2450)
+      Actions::call "game", "add", "Peter", "John", "second"
+    end
   end
 end

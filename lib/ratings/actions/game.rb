@@ -4,7 +4,11 @@ module Ratings
       module_function
       def add lname, rname, winner
         left, right = [ lname, rname ].map { |n| Ratings::Player.named(n) }
-        Ratings::Game.create :left => left, :right => right, :winner => winner_sym(winner)
+        game = Ratings::Game.create :left => left, :right => right, :winner => winner_sym(winner)
+        left.rating = left.rating + game.rating_change_for(:left)
+        left.save
+        right.rating = right.rating + game.rating_change_for(:right)
+        right.save
       end
 
       def winner_sym winner
