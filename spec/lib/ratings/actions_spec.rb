@@ -21,5 +21,6 @@ describe Ratings::Actions do
       lambda { Actions::call "something", "anything" }.should raise_error(Actions::NoActionFound)
       lambda { Actions::call "test", "nonexistent" }.should raise_error(Actions::NoActionFound)
     end
+    it "should not swallow exceptions that don't mean inexistent methods or actions"
   end
 end
