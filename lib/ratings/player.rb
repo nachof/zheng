@@ -13,5 +13,9 @@ module Ratings
     def rank= rank
       self.rating = Rating.new(rank).to_i
     end
+
+    def self.named name
+      self[:name => name]
+    end
   end
 end

@@ -55,4 +55,15 @@ describe Ratings::Player do
       pp.rank.should == '2d'
     end
   end
+
+  describe "finding" do
+    before do
+      Player.create :name => "Peter", :rating => 2000
+    end
+
+    it "should be possible to find a player by name" do
+      Player.named("Peter").name.should == "Peter"
+      Player.named("Peter").rating.should == 2000
+    end
+  end
 end
