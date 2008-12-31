@@ -34,6 +34,18 @@ describe Ratings::Actions::Player do
   end
 
   describe "delete" do
-    it "should delete a player"
+    before do
+      @p = mock("player")
+      Player.stub!(:named).and_return(@p)
+    end
+    it "should delete a player" do
+      Player.should_receive(:named).with("Peter").and_return(@p)
+      @p.should_receive(:destroy)
+      Actions::call "player", "delete", "Peter"
+    end
+  end
+
+  describe "set_ranking" do
+    it "should allow to reset a player's rating"
   end
 end

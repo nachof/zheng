@@ -17,6 +17,10 @@ module Ratings
         end
       end
 
+      def delete name
+        Ratings::Player.named(name).destroy
+      end
+
       def is_rank? rank
         return false unless rank.respond_to? :match
         return false unless rank.match /\d+(k|d)/
