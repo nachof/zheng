@@ -10,7 +10,7 @@ end
 
 DB.create_table :games do
   primary_key :id
-  foreign_key :left_player_id, :players
-  foreign_key :right_player_id, :players
+  foreign_key :left_id, :players
+  foreign_key :right_id, :players
   text :winner, :null => false
 end
