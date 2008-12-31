@@ -3,10 +3,18 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 include Ratings
 
 describe Ratings::Player do
+  before do
+    @p = Player.new(:name => 'John Smith', :rating => 2100)
+  end
+
+  it "should allow to set the rank" do
+    @p.rank = '4d'
+    @p.rating.should == 2400
+  end
+
   describe "instantiation" do
     it "should allow to create with a name and rank" do
-      pending
-      p = Player.new('John Smith', '1d')
+      p = Player.new(:name => 'John Smith', :rank => 2100)
       p.name.should == "John Smith"
       p.rank.should == '1d'
     end
@@ -20,14 +28,13 @@ describe Ratings::Player do
 
   describe "saving and retrieving" do
     before do
-      @p = Player.new(:name => 'John Smith', :rating => 2100)
-      DB[:players].delete
-      DB[:players].should have(0).players
+      Player.delete
+      Player.should have(0).players
     end
 
     it "should save" do
       @p.save
-      DB[:players].should have(1).player
+      Player.should have(1).player
     end
 
     it "should restore the correct data" do
@@ -35,6 +42,17 @@ describe Ratings::Player do
       p = Player.first
       p.name.should == @p.name
       p.rating.should == @p.rating
+    end
+
+    it "should save and restore when setting rank" do
+      p = Player.create(:name => 'John Smith', :rank => '4d')
+      p.rank.should == '4d'
+      p.rating.should == 2400
+      p.rank = '2d'
+      p.save
+      pp = Player[p.pk]
+      pp.rating.should == 2200
+      pp.rank.should == '2d'
     end
   end
 end
