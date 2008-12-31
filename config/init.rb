@@ -3,7 +3,6 @@ require 'sequel'
 
 require 'logger'
 
-require File.dirname(__FILE__) + '/../lib/ratings.rb'
 
 def db_connection
   Sequel.sqlite(File.dirname(__FILE__) + '/../data/ratings.db', :loggers => [ logger ])
@@ -16,3 +15,5 @@ else
   logger = Logger.new(File.dirname(__FILE__) + '/../logs/ratings.log')
   DB = db_connection
 end
+
+require File.dirname(__FILE__) + '/../lib/ratings.rb'

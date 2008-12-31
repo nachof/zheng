@@ -1,19 +1,13 @@
 module Ratings
-  class Player
-    attr_accessor :name
-
-    def initialize(name, rank)
-      @name = name
-      @rating = Rating.new(rank)
+  class Player < Sequel::Model
+    def name
+      @values[:name]
     end
-
     def rating
-      @rating.to_i
+      @values[:rating]
     end
-
     def rank
-      @rating.rank
+      Rating.new(rating).rank
     end
-
   end
 end
