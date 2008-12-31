@@ -45,7 +45,18 @@ describe Ratings::Actions::Player do
     end
   end
 
-  describe "set_ranking" do
-    it "should allow to reset a player's rating"
+  describe "set_rating" do
+    before do
+      @p = mock("player")
+      @p.stub! :save
+      Player.stub!(:named).and_return(@p)
+    end
+    it "should allow to reset a player's rating" do
+      Player.should_receive(:named).with("Peter").twice.and_return(@p)
+      @p.should_receive(:rank=).with('2k')
+      Actions::call "player", "set_rating", "Peter", "2k"
+      @p.should_receive(:rating=).with(2000)
+      Actions::call "player", "set_rating", "Peter", "2000"
+    end
   end
 end
