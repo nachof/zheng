@@ -11,6 +11,12 @@ module Ratings
         end
       end
 
+      def list
+        Ratings::Player.reverse_order(:rating).each do |p|
+          Ratings::output(sprintf "%-20.20s %s (%s)", p.name, p.rank, p.rating)
+        end
+      end
+
       def is_rank? rank
         return false unless rank.respond_to? :match
         return false unless rank.match /\d+(k|d)/

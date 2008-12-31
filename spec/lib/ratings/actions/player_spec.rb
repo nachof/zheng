@@ -17,4 +17,23 @@ describe Ratings::Actions::Player do
       Actions::call "player", "add", "Peter", "2100"
     end
   end
+
+  describe "list" do
+    before do
+      @p1 = mock("a player", :name => "One", :rating => 2000, :rank => '1k')
+      @p2 = mock("another player", :name => "Two", :rating => 2200, :rank => '2d')
+      Ratings.stub!(:output)
+    end
+    it "should produce a list of all the players in the database" do
+      Player.should_receive(:reverse_order).with(:rating).and_return([@p2, @p1])
+      Ratings.should_receive(:output).with("Two                  2d (2200)").exactly(:once) {
+        Ratings.should_receive(:output).with("One                  1k (2000)").exactly(:once)
+      }
+      Actions::call "player", "list"
+    end
+  end
+
+  describe "delete" do
+    it "should delete a player"
+  end
 end
