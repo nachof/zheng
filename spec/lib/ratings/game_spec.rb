@@ -4,6 +4,7 @@ include Ratings
 
 describe Ratings::Game do
   before do
+    Player.delete
     @left = Player.create(:name => "First Player", :rank => '1d')
     @right = Player.create(:name => "Second Player", :rank => '2k')
   end

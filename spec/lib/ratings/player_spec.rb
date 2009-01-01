@@ -4,6 +4,7 @@ include Ratings
 
 describe Ratings::Player do
   before do
+    Player.delete
     @p = Player.new(:name => 'John Smith', :rating => 2100)
   end
 
@@ -12,7 +13,10 @@ describe Ratings::Player do
     @p.rating.should == 2400
   end
 
-  it "should have an unique name"
+  it "should have an unique name" do
+    p = Player.create(:name => "Unique", :rank => '2d')
+    lambda { p = Player.create(:name => "Unique", :rank => '2d') }.should raise_error
+  end
 
   describe "instantiation" do
     it "should allow to create with a name and rank" do
