@@ -26,4 +26,8 @@ describe Ratings::Actions do
       lambda { Actions::call "test", "test", "something", "else" }.should_not raise_error(Actions::NoActionFound)
     end
   end
+
+  describe "scripts" do
+    it "should execute each line from stdin as an instruction when receiving no params"
+  end
 end

@@ -15,7 +15,8 @@ module Ratings
     end
 
     def self.named name
-      self[:name => name]
+      raise "Can't find player #{name}" if (found = self[:name => name]).nil?
+      found
     end
   end
 end

@@ -18,6 +18,10 @@ describe Ratings::Actions::Player do
     end
   end
 
+  describe "add_external" do
+    it "should add a player that is flagged as an external player"
+  end
+
   describe "list" do
     before do
       @p1 = mock("a player", :name => "One", :rating => 2000, :rank => '1k')

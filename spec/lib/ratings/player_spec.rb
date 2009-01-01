@@ -12,6 +12,8 @@ describe Ratings::Player do
     @p.rating.should == 2400
   end
 
+  it "should have an unique name"
+
   describe "instantiation" do
     it "should allow to create with a name and rank" do
       p = Player.new(:name => 'John Smith', :rank => 2100)
@@ -64,6 +66,10 @@ describe Ratings::Player do
     it "should be possible to find a player by name" do
       Player.named("Peter").name.should == "Peter"
       Player.named("Peter").rating.should == 2000
+    end
+
+    it "should raise an error if the named player does not exist" do
+      lambda { Player.named("I do not exist") }.should raise_error
     end
   end
 end
