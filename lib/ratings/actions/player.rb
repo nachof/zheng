@@ -4,7 +4,7 @@ module Ratings
       module_function
 
       def add(name, rank)
-        if is_rank? rank
+        if Ratings::Rating.is_rank? rank
           Ratings::Player.create(:name => name, :rank => rank)
         else
           Ratings::Player.create(:name => name, :rating => rank.to_i)
@@ -29,18 +29,12 @@ module Ratings
 
       def set_rating name, rank
         p = Ratings::Player.named(name)
-        if is_rank? rank
+        if Ratings::Rating.is_rank? rank
           p.rank = rank
         else
           p.rating = rank.to_i
         end
         p.save
-      end
-
-      def is_rank? rank
-        return false unless rank.respond_to? :match
-        return false unless rank.match /\d+(k|d)/
-        return true
       end
     end
   end

@@ -32,5 +32,11 @@ module Ratings
     def eql? other
       @rating == other.to_i
     end
+
+    def self.is_rank? string
+      return false unless string.respond_to? :match
+      return false unless string.match /\d+(k|d)/
+      return true
+    end
   end
 end
