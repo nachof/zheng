@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sequel'
 
+require 'shellwords' # Needed for parsing the script action
+
 require 'logger'
 
 if ENV['ENVIRONMENT'] == 'test'

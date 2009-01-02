@@ -7,6 +7,10 @@ module Ratings
       raise NoActionFound.new("#{mod} #{action} (#{$!})")
     end
 
+    def script text
+      call *Shellwords.shellwords(text)
+    end
+
     class NoActionFound < Exception; end
   end
 

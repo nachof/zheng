@@ -28,6 +28,15 @@ describe Ratings::Actions do
   end
 
   describe "scripts" do
-    it "should execute each line from stdin as an instruction when receiving no params"
+    it "should execute the line received" do
+      Actions.should_receive(:call).with("player", "add", "Peter", "1d")
+      Actions::script 'player add Peter 1d'
+    end
+    it "should correctly parse the quoted spaces" do
+      Actions.should_receive(:call).exactly(3).times.with("player", "add", "Lee Sedol", "10d")
+      Actions::script 'player add "Lee Sedol" 10d'
+      Actions::script 'player add \'Lee Sedol\' 10d'
+      Actions::script 'player add Lee\ Sedol 10d'
+    end
   end
 end
