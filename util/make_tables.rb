@@ -6,6 +6,7 @@ DB.create_table :players do
   primary_key :id
   text :name, :null => false, :unique => true
   integer :rating, :null => false
+  boolean :external, :default => false
 end
 
 DB.create_table :games do

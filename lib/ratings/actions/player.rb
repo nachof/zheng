@@ -11,6 +11,12 @@ module Ratings
         end
       end
 
+      def add_external(name, rank)
+        p = add(name, rank)
+        p.set_external!
+        p.save
+      end
+
       def list
         Ratings::Player.reverse_order(:rating).each do |p|
           Ratings::output(sprintf "%-20.20s %s (%s)", p.name, p.rank, p.rating)

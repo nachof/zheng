@@ -62,6 +62,16 @@ describe Ratings::Player do
     end
   end
 
+  describe "external players" do
+    it "should be possible to set a player's flag to external" do
+      @p.should_not be_external
+      @p.set_external!
+      @p.should be_external
+      @p.save
+      Player[@p.pk].should be_external
+    end
+  end
+
   describe "finding" do
     before do
       Player.create :name => "Peter", :rating => 2000

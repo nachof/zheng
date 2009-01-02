@@ -38,5 +38,7 @@ describe Ratings::Actions::Player do
       @p2.should_receive(:rating=).with(2450)
       Actions::call "game", "add", "Peter", "John", "second"
     end
+
+    it "should not change the ratings of players marked as external"
   end
 end

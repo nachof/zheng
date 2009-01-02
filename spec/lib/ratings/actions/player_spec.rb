@@ -19,7 +19,13 @@ describe Ratings::Actions::Player do
   end
 
   describe "add_external" do
-    it "should add a player that is flagged as an external player"
+    it "should add a player that is flagged as an external player" do
+      p = mock("player")
+      Player.should_receive(:create).with(:name => "Peter", :rating => 2100).and_return(p)
+      p.should_receive(:set_external!)
+      p.should_receive(:save)
+      Actions::call "player", "add_external", "Peter", "2100"
+    end
   end
 
   describe "list" do
