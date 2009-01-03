@@ -24,3 +24,4 @@ end
 
 require File.dirname(__FILE__) + '/actions/player'
 require File.dirname(__FILE__) + '/actions/game'
+require File.dirname(__FILE__) + '/actions/database'

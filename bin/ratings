@@ -8,4 +8,4 @@ if ARGV.size > 0
   Actions::call(*ARGV)
 else
   Actions::script $stdin
-  end
+end
