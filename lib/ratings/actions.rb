@@ -9,7 +9,11 @@ module Ratings
 
     def script text
       text.each_line do |l|
-        call *Shellwords.shellwords(l) unless l.strip.empty? || l.strip[0,1] == '#'
+        begin
+          call *Shellwords.shellwords(l) unless l.strip.empty? || l.strip[0,1] == '#'
+        rescue
+          Ratings::output("An error occured: #{$!}")
+        end
       end
     end
 

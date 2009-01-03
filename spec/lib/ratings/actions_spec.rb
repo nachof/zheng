@@ -56,6 +56,8 @@ describe Ratings::Actions do
       Actions.should_receive(:call).with("player", "add", "John", "1k")
       Actions::script "player add Peter 1d\n#A Comment\n\n   \nplayer add John 1k"
     end
-    it "should not stop execution because of an error"
+    it "should not stop execution because of an error" do
+      lambda { Actions::script "player add Peter 1d\nplayer add Peter 1k" }.should_not raise_error
+    end
   end
 end
