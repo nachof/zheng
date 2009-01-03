@@ -86,4 +86,18 @@ describe Zheng::Player do
       lambda { Player.named("I do not exist") }.should raise_error
     end
   end
+
+  describe "listing" do
+    before do
+      @p1 = Player.create :name => "Peter", :rating => 2000
+      @p2 = Player.create :name => "John", :rating => 2100
+    end
+    it "should return the list of players" do
+      list = Player.list
+      list.should include(@p1)
+      list.should include(@p2)
+      list.first.should == @p2
+    end
+    it "should not list external players"
+  end
 end

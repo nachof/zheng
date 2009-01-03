@@ -25,5 +25,9 @@ module Zheng
       raise "Can't find player #{name}" if (found = self[:name => name]).nil?
       found
     end
+
+    def self.list
+      reverse_order(:rating)
+    end
   end
 end

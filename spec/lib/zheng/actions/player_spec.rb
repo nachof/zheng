@@ -35,13 +35,12 @@ describe Zheng::Actions::Player do
       Zheng.stub!(:output)
     end
     it "should produce a list of all the players in the database" do
-      Player.should_receive(:reverse_order).with(:rating).and_return([@p2, @p1])
+      Player.should_receive(:list).and_return([@p2, @p1])
       Zheng.should_receive(:output).with("Two                  2d (2200)").exactly(:once) {
         Zheng.should_receive(:output).with("One                  1k (2000)").exactly(:once)
       }
       Actions::call "player", "list"
     end
-    it "should not list external players"
     it "should allow a parameter 'all' to list all players, including external"
   end
 

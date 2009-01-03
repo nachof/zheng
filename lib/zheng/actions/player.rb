@@ -18,7 +18,7 @@ module Zheng
       end
 
       def list
-        Zheng::Player.reverse_order(:rating).each do |p|
+        Zheng::Player.list.each do |p|
           Zheng::output(sprintf "%-20.20s %s (%s)", p.name, p.rank, p.rating)
         end
       end
