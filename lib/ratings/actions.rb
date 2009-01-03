@@ -8,7 +8,9 @@ module Ratings
     end
 
     def script text
-      call *Shellwords.shellwords(text)
+      text.each_line do |l|
+        call *Shellwords.shellwords(l)
+      end
     end
 
     class NoActionFound < Exception; end
