@@ -1,0 +1,6 @@
+require File.dirname(__FILE__) + '/zheng/parameters.rb'
+require File.dirname(__FILE__) + '/zheng/util.rb'
+require File.dirname(__FILE__) + '/zheng/rating.rb'
+require File.dirname(__FILE__) + '/zheng/player.rb'
+require File.dirname(__FILE__) + '/zheng/game.rb'
+require File.dirname(__FILE__) + '/zheng/actions.rb'
