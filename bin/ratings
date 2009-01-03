@@ -4,4 +4,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'init
 
 include Ratings
 
-Actions::call(*ARGV)
+if ARGV.size > 0
+  Actions::call(*ARGV)
+else
+  Actions::script $stdin
+  end
