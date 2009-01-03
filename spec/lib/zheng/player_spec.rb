@@ -98,6 +98,12 @@ describe Zheng::Player do
       list.should include(@p2)
       list.first.should == @p2
     end
-    it "should not list external players"
+    it "should not list external players" do
+      @pe = Player.create :name => "External", :rating => 2100, :external => true
+      list = Player.list
+      list.should include(@p1)
+      list.should include(@p2)
+      list.should_not include(@pe)
+    end
   end
 end

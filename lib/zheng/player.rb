@@ -27,7 +27,7 @@ module Zheng
     end
 
     def self.list
-      reverse_order(:rating)
+      filter(:external => false).reverse_order(:rating)
     end
   end
 end
