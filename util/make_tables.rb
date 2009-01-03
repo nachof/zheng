@@ -1,6 +1,6 @@
 #! /usr/bin/ruby
 
-require File.dirname(__FILE__) + '/../config/init'
+require File.join(File.dirname(__FILE__), '..', 'config', 'init')
 
 DB.create_table :players do
   primary_key :id
