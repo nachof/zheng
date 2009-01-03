@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Parameters do
+describe Zheng::Parameters do
   describe "parameter e" do
     it "should be 0.014" do
       Parameters::E.should == 0.014

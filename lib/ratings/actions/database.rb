@@ -1,10 +1,10 @@
-module Ratings
+module Zheng
   module Actions
     module Database
       module_function
       def clear
-        Ratings::Player.delete
-        Ratings::Game.delete
+        Zheng::Player.delete
+        Zheng::Game.delete
       end
     end
   end

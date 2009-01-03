@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   class Game < Sequel::Model
     include Util
 

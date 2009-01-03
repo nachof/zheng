@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Game do
+describe Zheng::Game do
   before do
     Player.delete
     @left = Player.create(:name => "First Player", :rank => '1d')

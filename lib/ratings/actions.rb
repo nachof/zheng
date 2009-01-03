@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   module Actions
     module_function
     def call(mod, action, *params)
@@ -12,7 +12,7 @@ module Ratings
         begin
           call *Shellwords.shellwords(l) unless l.strip.empty? || l.strip[0,1] == '#'
         rescue
-          Ratings::output("An error occured: #{$!}")
+          Zheng::output("An error occured: #{$!}")
         end
       end
     end

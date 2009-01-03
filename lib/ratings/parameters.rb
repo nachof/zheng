@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   module Parameters
     module_function
     # These values are taken from the European Go Rating. See http://gemma.ujf.cas.cz/~cieply/GO/gor.html

@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Actions::Database do
+describe Zheng::Actions::Database do
   describe "clear" do
     it "should delete all players and games" do
       Player.should_receive(:delete).with(no_args)

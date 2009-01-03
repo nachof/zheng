@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Actions do
+describe Zheng::Actions do
   describe "action dispatching" do
     before do
-      module Ratings; module Actions
+      module Zheng; module Actions
         module Test
           module_function
           def test(param1, param2);end

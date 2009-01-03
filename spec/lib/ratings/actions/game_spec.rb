@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Actions::Player do
+describe Zheng::Actions::Player do
   describe "add" do
     before do
       @p1 = mock("player1", :name => "Peter", :rating => 2400)

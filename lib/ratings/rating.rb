@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   class Rating
     def initialize(rating)
       @rating = rating.respond_to?(:match) ? from_rank(rating) : rating.to_i

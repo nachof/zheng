@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   module Util
 
     def self.included(base)

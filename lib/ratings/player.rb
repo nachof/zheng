@@ -1,4 +1,4 @@
-module Ratings
+module Zheng
   class Player < Sequel::Model
     include Util
 

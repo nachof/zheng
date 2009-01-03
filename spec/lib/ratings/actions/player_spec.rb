@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Actions::Player do
+describe Zheng::Actions::Player do
   describe "add" do
     it "should add a new player with rank" do
       Player.should_receive(:create).with(:name => "Peter", :rank => "7d")
@@ -32,15 +32,17 @@ describe Ratings::Actions::Player do
     before do
       @p1 = mock("a player", :name => "One", :rating => 2000, :rank => '1k')
       @p2 = mock("another player", :name => "Two", :rating => 2200, :rank => '2d')
-      Ratings.stub!(:output)
+      Zheng.stub!(:output)
     end
     it "should produce a list of all the players in the database" do
       Player.should_receive(:reverse_order).with(:rating).and_return([@p2, @p1])
-      Ratings.should_receive(:output).with("Two                  2d (2200)").exactly(:once) {
-        Ratings.should_receive(:output).with("One                  1k (2000)").exactly(:once)
+      Zheng.should_receive(:output).with("Two                  2d (2200)").exactly(:once) {
+        Zheng.should_receive(:output).with("One                  1k (2000)").exactly(:once)
       }
       Actions::call "player", "list"
     end
+    it "should not list external players"
+    it "should allow a parameter 'all' to list all players, including external"
   end
 
   describe "delete" do

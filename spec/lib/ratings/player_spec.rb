@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-include Ratings
+include Zheng
 
-describe Ratings::Player do
+describe Zheng::Player do
   before do
     Player.delete
     @p = Player.new(:name => 'John Smith', :rating => 2100)
