@@ -38,13 +38,23 @@ describe Ratings::Actions do
       Actions::script 'player add \'Lee Sedol\' 10d'
       Actions::script 'player add Lee\ Sedol 10d'
     end
-    it "should ignore leading whitespace"
-    it "should ignore multiple whitespace"
+    it "should ignore leading whitespace" do
+      Actions.should_receive(:call).with("player", "add", "Peter", "1d")
+      Actions::script '      player add Peter 1d'
+    end
+    it "should ignore multiple whitespace" do
+      Actions.should_receive(:call).with("player", "add", "Peter", "1d")
+      Actions::script "player    add\tPeter    1d"
+    end
     it "should execute many lines passed" do
       Actions.should_receive(:call).with("player", "add", "Peter", "1d")
       Actions.should_receive(:call).with("player", "add", "John", "1k")
       Actions::script "player add Peter 1d\nplayer add John 1k"
     end
-    it "should ignore comments and empty lines"
+    it "should ignore comments and empty lines" do
+      Actions.should_receive(:call).with("player", "add", "Peter", "1d")
+      Actions.should_receive(:call).with("player", "add", "John", "1k")
+      Actions::script "player add Peter 1d\n#A Comment\n\n   \nplayer add John 1k"
+    end
   end
 end
