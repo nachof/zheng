@@ -1,0 +1,35 @@
+= Zheng
+
+Zheng is a small utility to manage go ratings.
+
+Zheng is based on the method used by the European Go Federation (described in http://gemma.ujf.cas.cz/~cieply/GO/gor.html).
+
+== About the name
+The name Zheng comes from the chinese 证 (zhèng), which, according to Sensei's Library (http://senseis.xmp.net/?ChineseGoTerms), means a rank certificate or diploma.
+
+== Usage
+The first thing you need to do is to initialize the database. You can use the `util/make_tables.rb` script and it will do it automatically. Once you have that done, you can use zheng.
+
+=== Adding players
+To create a player, do
+  bin/zheng player add "Player Name" 1k
+You can also use the numeric rating for the initial rating:
+  bin/zheng player add "Player Name" 2000
+Given that 1k is 2000 points in the rating system, both commands are equivalent.
+
+To see a list of players:
+  bin/zheng player list
+
+=== Adding a game
+To add a game, do
+  bin/zheng game add "First Player" "Second Player" winner
+where _winner_ is either left, right, first, or second. Left and first are the same, and right and second are the same, too.
+
+When a game is added the rank of its participants is immediately updated to reflect the result.
+
+=== External players
+You can also add "external players". External players are there to allow to record games played against other people, outside the system you're managing. The idea of this is to keep a certain correspondence to global ranks, and avoid too much drifting, either by deflation or inflation. To add an external player, do
+  bin/zheng player add_external "Player Name" 1d
+
+External players do not show up on player listings, and their rank is not changed by games.
+
