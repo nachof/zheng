@@ -37,5 +37,6 @@ When a game is added the rank of its participants is immediately updated to refl
 You can also add "external players". External players are there to allow to record games played against other people, outside the system you're managing. The idea of this is to keep a certain correspondence to global ranks, and avoid too much drifting, either by deflation or inflation. To add an external player, do
   bin/zheng player add_external "Player Name" 1d
 
-External players do not show up on player listings, and their rank is not changed by games.
+External players do not normally show up on player listings, and their rank is not changed by games. If you want to see a list including also external players, use
+  bin/zheng player list all
 

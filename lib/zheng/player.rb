@@ -26,8 +26,9 @@ module Zheng
       found
     end
 
-    def self.list
-      filter(:external => false).reverse_order(:rating)
+    def self.list what=:local
+      what_to_order = (what == :all) ? self : filter(:external => false)
+      what_to_order.reverse_order(:rating)
     end
   end
 end

@@ -17,8 +17,9 @@ module Zheng
         p.save
       end
 
-      def list
-        Zheng::Player.list.each do |p|
+      def list what="local"
+        what_to_list = (what == "all") ? :all : :local
+        Zheng::Player.list(what_to_list).each do |p|
           Zheng::output(sprintf "%-20.20s %s (%s)", p.name, p.rank, p.rating)
         end
       end

@@ -41,7 +41,10 @@ describe Zheng::Actions::Player do
       }
       Actions::call "player", "list"
     end
-    it "should allow a parameter 'all' to list all players, including external"
+    it "should allow a parameter 'all' to list all players, including external" do
+      Player.should_receive(:list).with(:all).and_return([@p2, @p1])
+      Actions::call "player", "list", "all"
+    end
   end
 
   describe "delete" do

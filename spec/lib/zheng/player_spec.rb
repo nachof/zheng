@@ -105,5 +105,12 @@ describe Zheng::Player do
       list.should include(@p2)
       list.should_not include(@pe)
     end
+    it "should list all players if :all passed as a parameter" do
+      @pe = Player.create :name => "External", :rating => 2100, :external => true
+      list = Player.list :all
+      list.should include(@p1)
+      list.should include(@p2)
+      list.should include(@pe)
+    end
   end
 end
