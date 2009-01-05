@@ -7,6 +7,12 @@ Zheng is based on the method used by the European Go Federation (described in ht
 == About the name
 The name Zheng comes from the chinese 证 (zhèng), which, according to Sensei's Library (http://senseis.xmp.net/?ChineseGoTerms), means a rank certificate or diploma.
 
+== Dependencies
+You will need rubygems installed. Also, you will need the following gems:
+* sequel
+* sqlite3
+* shellwords
+
 == Usage
 The first thing you need to do is to initialize the database. You can use the `util/make_tables.rb` script and it will do it automatically. Once you have that done, you can use zheng.
 
