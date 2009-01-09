@@ -1,9 +1,14 @@
 module Zheng
   class Game < Sequel::Model
+    set_schema do
+      primary_key :id
+      foreign_key :left_id, :players
+      foreign_key :right_id, :players
+      text :winner, :null => false
+    end
+
     include Util
 
-    set_dataset :games
-    set_primary_key :id
     belongs_to :left, :class => :Player
     belongs_to :right, :class => :Player
 

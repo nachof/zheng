@@ -1,9 +1,13 @@
 module Zheng
   class Player < Sequel::Model
-    include Util
+    set_schema do
+      primary_key :id
+      text :name, :null => false, :unique => true
+      integer :rating, :null => false
+      boolean :external, :default => false
+    end
 
-    set_dataset :players
-    set_primary_key :id
+    include Util
 
     sequel_accessor :name, :rating
 
