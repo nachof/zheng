@@ -25,5 +25,4 @@ else
   DB = Sequel.connect(config[:database], :loggers => [ logger ])
 end
 
-
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'zheng'))
