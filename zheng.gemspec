@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency("sequel", ">= 2.8.0")
  
   s.has_rdoc = false
+
 end
