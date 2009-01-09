@@ -14,7 +14,6 @@ You will need rubygems installed. Also, you will need the following gems:
 * shellwords
 
 == Usage
-The first thing you need to do is to initialize the database. You can use the `util/make_tables.rb` script and it will do it automatically. Once you have that done, you can use zheng.
 
 === Adding players
 To create a player, do
