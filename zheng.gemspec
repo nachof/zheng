@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'zheng'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.summary = %{A go ratings calculator, based on the method published by the European Go Federation}
   s.date = %q{2009-01-09}
   s.author = "Nacho Facello"
@@ -17,7 +17,9 @@ Gem::Specification.new do |s|
              "lib/zheng/player.rb",
              "lib/zheng/rating.rb",
              "lib/zheng/util.rb",
+             "config/init.rb",
              "lib/zheng.rb",
+             "config/default.yaml",
              "README.rdoc",
              "LICENSE"]
  
