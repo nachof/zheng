@@ -1,1 +1,1 @@
-:database: sqlite://<%= File.expand_path(File.join(File.dirname(__FILE__), 'data', 'zheng.db')) %>
+:database: sqlite://<%= File.expand_path '~/.zheng.db' %>
