@@ -3,7 +3,7 @@ module Zheng
     set_schema do
       primary_key :id
       text :name, :null => false, :unique => true
-      integer :rating, :null => false
+      float :rating, :null => false
       boolean :external, :default => false
     end
 
