@@ -7,10 +7,6 @@ module Zheng
       boolean :external, :default => false
     end
 
-    include Util
-
-    sequel_accessor :name, :rating
-
     def rank
       Rating.new(rating).rank
     end
