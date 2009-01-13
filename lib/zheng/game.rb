@@ -1,6 +1,7 @@
 module Zheng
   class Game < Sequel::Model
     before_create :set_ratings
+    before_create :set_date
 
     set_schema do
       primary_key :id
@@ -9,6 +10,7 @@ module Zheng
       text :winner, :null => false
       float :left_rating_before, :null => false
       float :right_rating_before, :null => false
+      date :date, :null => false
     end
 
     belongs_to :left, :class => :Player
@@ -43,6 +45,10 @@ module Zheng
     def set_ratings
       self.left_rating_before = left.rating
       self.right_rating_before = right.rating
+    end
+
+    def set_date
+      self.date = Date.today if date.nil?
     end
 
   end

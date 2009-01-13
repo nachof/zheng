@@ -28,6 +28,17 @@ describe Zheng::Game do
     game.rating_after(:right).should == (game.rating_before(:right) + game.rating_change_for(:right))
   end
 
+  it "should store the date the game was added" do
+    game = Game.create(:left => @left, :right => @right, :winner => :left)
+    game.date.should == Date.today
+  end
+
+  it "should store the date specified" do
+    date = Date.new(2008, 1, 1)
+    game = Game.create(:left => @left, :right => @right, :winner => :left, :date => date)
+    game.date.should == date
+  end
+
   describe "ratings calculations" do
     before do
       @game = Game.create(:left => @left, :right => @right, :winner => :left)
