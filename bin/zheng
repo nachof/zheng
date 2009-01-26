@@ -7,5 +7,9 @@ include Zheng
 if ARGV.size > 0
   Actions::call(*ARGV)
 else
-  Actions::script $stdin
+  if $stdin.tty?
+    Interactive.run
+  else
+    Actions.script $stdin
+  end
 end
