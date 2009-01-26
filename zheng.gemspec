@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name = 'zheng'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
   s.summary = %{A go ratings calculator, based on the method published by the European Go Federation}
-  s.date = %q{2009-01-09}
+  s.date = %q{2009-01-26}
   s.author = "Nacho Facello"
   s.email = "nacho@nucleartesuji.com"
  
