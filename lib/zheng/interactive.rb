@@ -5,9 +5,9 @@ module Zheng
     # Run in interactive mode
     def run
       while true
-        print PROMPT
-        line = gets
+        line = Readline::readline(PROMPT)
         break if line.nil? or line.strip == 'exit'
+        Readline::HISTORY.push(line)
         Actions.script line
       end
       puts "\nTerminating"

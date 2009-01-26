@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sequel'
 require 'erb'
+require 'readline'
 
 require 'shellwords' # Needed for parsing the script action
 
