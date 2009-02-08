@@ -5,7 +5,7 @@ module Zheng
     # Run in interactive mode
     def run
       while true
-        line = Readline::readline(PROMPT)
+        line = Readline.readline(PROMPT)
         break if line.nil? or line.strip == 'exit'
         Readline::HISTORY.push(line)
         Actions.script line

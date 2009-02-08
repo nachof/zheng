@@ -16,19 +16,19 @@ describe Zheng::Actions::Player do
 
     it "should add a new game, winner left" do
       Game.should_receive(:create).with(:left => @p1, :right => @p2, :winner => :left)
-      Actions::call "game", "add", "Peter", "John", "left"
+      Actions.call "game", "add", "Peter", "John", "left"
     end
     it "should add a new game, winner right" do
       Game.should_receive(:create).with(:left => @p1, :right => @p2, :winner => :right)
-      Actions::call "game", "add", "Peter", "John", "right"
+      Actions.call "game", "add", "Peter", "John", "right"
     end
     it "should add a new game, winner first" do
       Game.should_receive(:create).with(:left => @p1, :right => @p2, :winner => :left)
-      Actions::call "game", "add", "Peter", "John", "first"
+      Actions.call "game", "add", "Peter", "John", "first"
     end
     it "should add a new game, winner second" do
       Game.should_receive(:create).with(:left => @p1, :right => @p2, :winner => :right)
-      Actions::call "game", "add", "Peter", "John", "second"
+      Actions.call "game", "add", "Peter", "John", "second"
     end
 
     it "should change the ratings of the players according to the game" do
@@ -36,7 +36,7 @@ describe Zheng::Actions::Player do
       @g.should_receive(:rating_change_for).with(:right).and_return 50
       @p1.should_receive(:rating=).with(2350)
       @p2.should_receive(:rating=).with(2450)
-      Actions::call "game", "add", "Peter", "John", "second"
+      Actions.call "game", "add", "Peter", "John", "second"
     end
 
     it "should not change the ratings of players marked as external" do
@@ -45,7 +45,7 @@ describe Zheng::Actions::Player do
       @g.stub!(:rating_change_for).with(:right).and_return 50
       @p1.should_not_receive(:rating=).with(2350)
       @p2.should_receive(:rating=).with(2450)
-      Actions::call "game", "add", "Peter", "John", "second"
+      Actions.call "game", "add", "Peter", "John", "second"
     end
   end
 end

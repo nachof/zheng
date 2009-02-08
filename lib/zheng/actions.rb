@@ -12,7 +12,7 @@ module Zheng
         begin
           call *Shellwords.shellwords(l) unless l.strip.empty? || l.strip[0,1] == '#'
         rescue
-          Zheng::output("An error occured: #{$!}")
+          Zheng.output("An error occured: #{$!}")
         end
       end
     end
