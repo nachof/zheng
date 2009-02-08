@@ -1,8 +1,8 @@
 module Zheng
   module Actions
     module_function
-    def call(mod, action, *params)
-      "Actions::#{mod.camelize}".constantize.send(action.to_sym, *params)
+    def call(mod, action = nil, *params)
+      "Actions::#{mod.camelize}".constantize.send((action || '__default').to_sym, *params)
     rescue NameError
       raise NoActionFound.new("#{mod} #{action} (#{$!})")
     end

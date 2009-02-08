@@ -24,6 +24,11 @@ describe Zheng::Actions do
     it "should not swallow exceptions that don't mean inexistent methods or actions" do
       Actions::Test.should_receive(:test).any_number_of_times.and_raise(Sequel::DatabaseError)
       lambda { Actions.call "test", "test", "something", "else" }.should_not raise_error(Actions::NoActionFound)
+      lambda { Actions.call "test", "test", "something", "else" }.should raise_error(Sequel::DatabaseError)
+    end
+    it "should call the default action if no action was specified" do
+      Actions::Test.should_receive(:__default)
+      Actions.call "test"
     end
   end
 
