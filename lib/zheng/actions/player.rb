@@ -37,6 +37,12 @@ module Zheng
         end
         p.save
       end
+
+      def show name
+        player = Zheng::Player.named name
+        Zheng.output "#{player.name} -- #{player.rank} (#{player.rating})"
+        Zheng.output "Games: #{player.games.count}"
+      end
     end
   end
 end

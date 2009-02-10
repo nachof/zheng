@@ -7,6 +7,10 @@ module Zheng
       boolean :external, :default => false
     end
 
+    def games
+      Game.filter(:left_id => pk).or(:right_id => pk)
+    end
+
     def rank
       Rating.new(rating).rank
     end

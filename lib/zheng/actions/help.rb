@@ -45,6 +45,8 @@ module Zheng
         output "   Sets the rating of the player to the specified rating or rank"
         output "   Level can be a ranking or rating value"
         output "   Example: player set_rating \"John Doe\" 2d"
+        output "player show name"
+        output "   Show information about a player"
       end
     end
   end

@@ -73,4 +73,22 @@ describe Zheng::Actions::Player do
       Actions.call "player", "set_rating", "Peter", "2000"
     end
   end
+
+  describe "show" do
+    before do
+      @opponent = mock("opponent", :name => "Opponent")
+      @p = mock("player", :name => "Player", :rank => '1k', :rating => '2025')
+      @g1 = mock("one game", :left => @p, :right => @opponent, :winner => :left)
+      @g2 = mock("other game", :left => @p, :right => @opponent, :winner => :right)
+      @p.stub!(:games).and_return([@g1, @g2])
+      Player.stub!(:named).and_return(@p)
+      Zheng.stub!(:output)
+    end
+
+    it "should show all the information" do
+      Zheng.should_receive(:output).with("Player -- 1k (2025)")
+      Zheng.should_receive(:output).with("Games: 2")
+      Actions.call "player", "show", "Player"
+    end
+  end
 end

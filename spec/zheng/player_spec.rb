@@ -113,4 +113,17 @@ describe Zheng::Player do
       list.should include(@pe)
     end
   end
+
+  describe "games" do
+    before do
+      @p = Player.create :name => "Test", :rating => 2100
+      @o = Player.create :name => "Opponent", :rating => 2100
+      @g = Game.create :left => @p, :right => @o, :winner => :left
+    end
+
+    it "should return the player's games" do
+      @p.games.should include(@g)
+      @o.games.should include(@g)
+    end
+  end
 end
