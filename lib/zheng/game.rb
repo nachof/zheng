@@ -25,8 +25,8 @@ module Zheng
 
     def rating_change_for which_player
       which_opponent = (which_player == :left) ? :right : :left
-      player, opponent = [which_player, which_opponent].map { |p| send(p) }
-      return Parameters.Con(player.rating) * (result(which_player) - Parameters.expected(player.rating, opponent.rating))
+      expected = Parameters.expected(rating_before(which_player), rating_before(which_opponent))
+      return Parameters.Con(rating_before(which_player)) * (result(which_player) - expected)
     end
 
     def rating_before which_player

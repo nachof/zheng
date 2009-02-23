@@ -52,6 +52,16 @@ describe Zheng::Game do
       @game.rating_change_for(:right).should < 0
     end
 
+    it "should calculate the same rating change after changing the players' ratings (that is, use the values they had before)" do
+      change_left = @game.rating_change_for(:left)
+      @left.rank = '1k'
+      @left.save
+      @right.rank = '1k'
+      @right.save
+      @game.reload
+      @game.rating_change_for(:left).should == change_left
+    end
+
     describe "for same rating" do
       describe "(2400)" do
         before do
