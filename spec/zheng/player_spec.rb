@@ -126,4 +126,50 @@ describe Zheng::Player do
       @o.games.should include(@g)
     end
   end
+
+  describe "initial_rating" do
+    it "should return the initial player's rating before adding any games" do
+      @p.initial_rating.should == 2100
+    end
+
+    it "should return the initial player's rating after adding a game" do
+      @p.save
+      @o = Player.create :name => "Opponent", :rating => 2100
+      @g = Game.create :left => @p, :right => @o, :winner => :left
+      @p.reload
+      @p.initial_rating.should == 2100
+    end
+  end
+
+  describe "max rating" do
+    before do
+      @p = Player.create :name => "Player", :rating => 2100
+      @o = Player.create :name => "Opponent", :rating => 2100
+    end
+
+    it "should return the initial rating if no games" do
+      @p.max_rating.should == @p.initial_rating
+    end
+
+    it "should return the initial rating if only a game lost" do
+      Game.create(:left => @p, :right => @o, :winner => :right).apply
+      @p.reload
+      @p.max_rating.should == @p.initial_rating
+    end
+
+    it "should return the current rating if only a game won" do
+      Game.create(:left => @p, :right => @o, :winner => :left).apply
+      @p.reload
+      @p.max_rating.should == @p.rating
+    end
+
+    it "should return the rating after the first game when one won, one lost" do
+      Game.create(:left => @p, :right => @o, :winner => :left).apply
+      @p.reload
+      this_should_be_max = @p.rating
+      Game.create(:left => @p, :right => @o, :winner => :right).apply
+      @p.reload
+      @p.max_rating.should == this_should_be_max
+    end
+  end
 end

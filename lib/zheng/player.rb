@@ -25,6 +25,16 @@ module Zheng
       @values[:external] = true
     end
 
+    def initial_rating
+      return rating if games.first.nil?
+      whois = (games.first.left == self) ? :left : :right
+      games.first.rating_before(whois)
+    end
+
+    def max_rating
+      (games.map { |g| (g.left == self ? g.rating_before(:left) : g.rating_before(:right)).to_i } + [rating.to_i]).max
+    end
+
     def self.named name
       raise "Can't find player #{name}" if (found = self[:name => name]).nil?
       found
