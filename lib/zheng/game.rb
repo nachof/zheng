@@ -30,7 +30,7 @@ module Zheng
     end
 
     def rating_before which_player
-      send("#{which_player.to_s}_rating_before".to_sym)
+      send("#{identify_player(which_player).to_s}_rating_before".to_sym)
     end
     def rating_after which_player
       rating_before(which_player) + rating_change_for(which_player)
@@ -60,6 +60,12 @@ module Zheng
 
     def set_date
       self.date = Date.today if date.nil?
+    end
+
+    def identify_player which_player
+      return :left if which_player == left
+      return :right if which_player == right
+      return which_player
     end
 
   end

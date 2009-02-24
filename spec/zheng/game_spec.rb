@@ -22,6 +22,12 @@ describe Zheng::Game do
     game.rating_before(:right).should == 1900
   end
 
+  it "should tell the players' previous rating, using the player as parameter" do
+    game = Game.create(:left => @left, :right => @right, :winner => :left)
+    game.rating_before(@left).should == 2100
+    game.rating_before(@right).should == 1900
+  end
+
   it "should tell the players' rating after" do
     game = Game.create(:left => @left, :right => @right, :winner => :left)
     game.rating_after(:left).should == (game.rating_before(:left) + game.rating_change_for(:left))
