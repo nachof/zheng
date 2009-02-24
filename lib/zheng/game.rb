@@ -41,13 +41,12 @@ module Zheng
     end
 
     def apply
-      unless left.external?
-        left.rating = left.rating + rating_change_for(:left)
-        left.save
-      end
-      unless right.external?
-        right.rating = right.rating + rating_change_for(:right)
-        right.save
+      [:left, :right].each do |which|
+        player = send(which)
+        unless player.external?
+          player.rating = player.rating + rating_change_for(which)
+          player.save
+        end
       end
     end
 
