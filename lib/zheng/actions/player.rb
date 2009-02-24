@@ -42,6 +42,10 @@ module Zheng
         player = Zheng::Player.named name
         Zheng.output "#{player.name} -- #{player.rank} (#{player.rating})"
         Zheng.output "Games: #{player.games.count}"
+        initial_rank = Zheng::Rating.new(player.initial_rating).rank
+        Zheng.output "Initial rating: #{initial_rank} (#{player.initial_rating})"
+        max_rank = Zheng::Rating.new(player.max_rating).rank
+        Zheng.output "Max rating: #{max_rank} (#{player.max_rating})"
       end
     end
   end

@@ -79,6 +79,8 @@ describe Zheng::Actions::Player do
       @opponent = mock("opponent", :name => "Opponent")
       @p = mock("player", :name => "Player", :rank => '1k', :rating => '2025')
       @g1 = mock("one game", :left => @p, :right => @opponent, :winner => :left)
+      @p.stub!(:initial_rating).and_return(2000)
+      @p.stub!(:max_rating).and_return(2100)
       @g2 = mock("other game", :left => @p, :right => @opponent, :winner => :right)
       @p.stub!(:games).and_return([@g1, @g2])
       Player.stub!(:named).and_return(@p)
@@ -88,7 +90,13 @@ describe Zheng::Actions::Player do
     it "should show all the information" do
       Zheng.should_receive(:output).with("Player -- 1k (2025)")
       Zheng.should_receive(:output).with("Games: 2")
+      Zheng.should_receive(:output).with("Initial rating: 1k (2000)")
+      Zheng.should_receive(:output).with("Max rating: 1d (2100)")
       Actions.call "player", "show", "Player"
     end
+  end
+
+  describe "history" do
+    it "should show a detailed history of the player"
   end
 end
