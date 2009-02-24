@@ -40,6 +40,17 @@ module Zheng
       (which_player == winner) ? 1 : 0
     end
 
+    def apply
+      unless left.external?
+        left.rating = left.rating + rating_change_for(:left)
+        left.save
+      end
+      unless right.external?
+        right.rating = right.rating + rating_change_for(:right)
+        right.save
+      end
+    end
+
   private
 
     def set_ratings

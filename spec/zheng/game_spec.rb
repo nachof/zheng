@@ -109,5 +109,31 @@ describe Zheng::Game do
     end
 
   end
+
+  describe "apply" do
+    before do
+      @left = Player.create(:name => "left", :rating => 2400)
+      @right = Player.create(:name => "right", :rating => 2400)
+    end
+
+    it "should reflect the ratings changes in the players" do
+      @game = Game.create(:left => @left, :right => @right, :winner => :right)
+      @game.apply
+      @left.reload
+      @right.reload
+      @left.rating.should == 2392.5
+      @right.rating.should == 2407.5
+    end
+
+    it "should not change the ratings for external players" do
+      @left = Player.create :name => "external left", :rating => 2400, :external => true
+      @game = Game.create(:left => @left, :right => @right, :winner => :right)
+      @game.apply
+      @left.reload
+      @right.reload
+      @left.rating.should == 2400
+      @right.rating.should == 2407.5
+    end
+  end
 end
 
